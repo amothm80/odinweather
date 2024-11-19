@@ -1,5 +1,142 @@
+:root {
+  --blue-200: #bfdbfe;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --blue-400: #60a5fa;
+  --red-400: #f87171;
+  --neutral-50: #fafafa;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+html {
+  background-image: url('./assets/3.jpg');
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+body {
+  width: 500px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-top: 20px;
+}
+
+header,
+#location-section,
+#location,
+#today-section,
+#forecast-section {
+  background-color: var(--neutral-50);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header {
+  display: flex;
+  direction: row;
+  justify-content: center;
+}
+
+#location-section {
+  display: flex;
+  direction: row;
+  justify-content: center;
+}
+
+#location {
+  display: none;
+  direction: row;
+  justify-content: center;
+}
+
+.date-today {
+  grid-area: date-today;
+  font-size: 3rem;
+}
+.temp-today {
+  grid-area: temp-today;
+  font-size: 5rem;
+  font-weight: 900;
+  align-self: center;
+}
+.icon-today {
+  grid-area: icon-today;
+  align-self: center;
+  justify-self: center;
+
+}
+.cond-today {
+  grid-area: cond-today;
+  font-size: 3rem;
+}
+.high-today {
+  grid-area: high-today;
+  font-size: 3rem;
+}
+.low-today {
+  grid-area: low-today;
+  font-size: 3rem;
+}
+
+#today-section {
+  display: none;
+  height: 100%;
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    'date-today date-today date-today date-today'
+    'temp-today temp-today icon-today icon-today'
+    'temp-today temp-today icon-today icon-today'
+    'cond-today cond-today cond-today cond-today'
+    'high-today low-today . .';
+}
+
+.icon-today {
+  height: 100px;
+  width: 100px;
+}
+
+#forecast-section {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.forecast-line {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 2fr;
+  grid-template-rows: 1fr;
+  gap: 15px;
+  align-items: center;
+}
+
+.icon-forecast {
+  height: 50px;
+  width: 50px;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
