@@ -1,7 +1,25 @@
 import './styles.css';
 import { eventHandlers } from './events.js';
 
-export function populateValues(value) {
+
+export function populateValues(value){
+    const weatherValues = [];
+    value.days.forEach((day,index)=>{
+        let dayWeather = {};
+        dayWeather.day = day.datetime;
+        dayWeather.temp = day.temp;
+        dayWeather.icon = day.icon;
+        dayWeather.conditions = day.conditions;
+        dayWeather.precipprob = day.precipprob;
+        dayWeather.tempmax = day.tempmax;
+        dayWeather.tempmin = day.tempmin;
+        weatherValues.push(dayWeather)
+    })
+
+    buildPage(value.resolvedAddress, weatherValues);
+}
+
+function buildPage(address,weather) {
   // <div class="date"></div>
   // <div class="temp"></div>
   // <div class="icon"></div>
@@ -9,8 +27,7 @@ export function populateValues(value) {
   // <div class="perciprob"></div>
   // <div class="high"></div>
   // <div class="low"></div>
-  const address = value.resolvedAddress;
-  const weather = value.days;
+//   const weather = value.days;
   const locationDiv = document.querySelector('#location');
   const todayDiv = document.querySelector('#today-section');
   const forecastDiv = document.querySelector('#forecast-section');
@@ -25,7 +42,7 @@ export function populateValues(value) {
     let divPreciprob = document.createElement('div');
     let divHigh = document.createElement('div');
     let divLow = document.createElement('div');
-    divDate.innerHTML = day.datetime;
+    divDate.innerHTML = day.day;
     divTemp.innerHTML = day.temp;
     divIcon.innerHTML = day.icon;
     divCond.innerHTML = day.conditions;
